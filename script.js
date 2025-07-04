@@ -1,47 +1,10 @@
-// Xử lý gửi lời chúc lên Google Sheets
-document.getElementById("guestForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  const name = document.getElementById("name").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  if(name && message){
-    fetch("https://script.google.com/macros/s/AKfycbxx5lsMIqpIZpNlhR1b6xl2tX-3rXBE12HabRh1bkEX1jgkVHg-UcWCBPhZXrwnmUf8uA/exec", {
-      method: "POST",
-      body: JSON.stringify({ name, message }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.status === "success"){
-        addMessage(name, message);
-        this.reset();
-      } else {
-        alert("Lưu lời chúc thất bại. Vui lòng thử lại.");
-      }
-    })
-    .catch(() => alert("Không thể kết nối. Vui lòng thử lại sau."));
-  } else {
-    alert("Vui lòng nhập đầy đủ họ tên và lời chúc.");
-  }
-});
-
-// Thêm lời chúc vào giao diện
-function addMessage(name, message) {
-  const msgDiv = document.createElement("div");
-  msgDiv.className = "message-item";
-  msgDiv.innerHTML = `<strong>${name}</strong><br>${message}`;
-  document.getElementById("messages").prepend(msgDiv);
-}
-
-// Hiệu ứng hoa rơi
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let petals = [];
+
 for (let i = 0; i < 50; i++) {
   petals.push({
     x: Math.random() * canvas.width,
@@ -51,26 +14,32 @@ for (let i = 0; i < 50; i++) {
   });
 }
 
-
 function drawPetals() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#d2b48c"; // nâu nhạt
+  ctx.fillStyle = "#c68642"; // nâu caramel
   ctx.beginPath();
-  for (let p of petals) {
+  for (let i = 0; i < petals.length; i++) {
+    let p = petals[i];
     ctx.moveTo(p.x, p.y);
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
   }
   ctx.fill();
   updatePetals();
 }
 
 function updatePetals() {
-  for (let p of petals) {
+  for (let i = 0; i < petals.length; i++) {
+    let p = petals[i];
     p.y += p.d;
     p.x += Math.sin(p.y * 0.01);
+
     if (p.y > canvas.height) {
-      p.y = 0;
-      p.x = Math.random() * canvas.width;
+      petals[i] = {
+        x: Math.random() * canvas.width,
+        y: 0,
+        r: p.r,
+        d: p.d
+      };
     }
   }
 }
@@ -82,7 +51,6 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
 });
 
-// Tự phát nhạc khi click
 document.addEventListener("click", () => {
   const music = document.getElementById("bg-music");
   if (music.paused) {
