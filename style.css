@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: #f5f5dc;
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.invitation,
+.album,
+.map,
+.guestbook {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 20px rgba(139, 69, 19, 0.3);
+  text-align: center;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.couple {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+h1, p {
+  margin: 8px 0;
+  color: #8b4513;
+}
+
+h2.names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5em;
+  color: #8b4513;
+}
+
+.album h2,
+.map h2,
+.guestbook h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: #8b4513;
+  margin-bottom: 15px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.guestbook-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#guestForm {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#guestForm input,
+#guestForm textarea {
+  padding: 10px;
+  border: 1px solid #8b4513;
+  border-radius: 8px;
+}
+
+#guestForm button {
+  background: #8b4513;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#messages {
+  flex: 1 1 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #8b4513;
+  border-radius: 8px;
