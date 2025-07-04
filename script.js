@@ -50,6 +50,10 @@ for (let i = 0; i < 50; i++) {
     d: Math.random() * 1 + 0.5
   });
 }
+function doGet(e) {
+  return ContentService.createTextOutput("Web App hoạt động! Gửi POST để lưu lời chúc.")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
 
 function drawPetals() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
