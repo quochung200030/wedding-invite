@@ -49,7 +49,7 @@ document.getElementById("guestForm").addEventListener("submit", function(e){
   const message = document.getElementById("message").value.trim();
 
   if(name && message){
-    fetch("URL_WEB_APP_CUA_BAN", {
+    fetch("https://script.google.com/macros/s/AKfycbxCCNSPpVBpES6TQeVVR9ENzuKYDs_RGOXf6Gk9wSi36uJJN-RaOXOZX2GNOzL9Zb_xeA/exec", {
       method: "POST",
       body: JSON.stringify({ name, message }),
       headers: {
