@@ -5,7 +5,7 @@ document.getElementById("guestForm").addEventListener("submit", function(e){
   const message = document.getElementById("message").value.trim();
 
   if(name && message){
-    fetch("https://script.google.com/macros/s/AKfycbxPbBzjhaz7o-WxiReKMWUBjwMDE5epa-vCFNkfYhltfE4s94EcSTbcHpcR9DlINxmJrw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxx5lsMIqpIZpNlhR1b6xl2tX-3rXBE12HabRh1bkEX1jgkVHg-UcWCBPhZXrwnmUf8uA/exec", {
       method: "POST",
       body: JSON.stringify({ name, message }),
       headers: {
